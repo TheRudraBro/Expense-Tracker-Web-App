@@ -1,7 +1,10 @@
+import * as React from 'react'
 import { useAuth, useSignUp } from '@clerk/expo'
 import { Link, useRouter } from 'expo-router'
-import React from 'react'
-import { Pressable, StyleSheet, TextInput, View, Text } from 'react-native'
+// import React from 'react'
+import { Pressable, StyleSheet, TextInput, View, Text, TouchableOpacity } from 'react-native'
+
+// import { COLORS } from '../../constants/colors'
 
 export default function Page() {
   const { signUp, errors, fetchStatus } = useSignUp()
@@ -11,6 +14,7 @@ export default function Page() {
   const [emailAddress, setEmailAddress] = React.useState('')
   const [password, setPassword] = React.useState('')
   const [code, setCode] = React.useState('')
+  const [error, setError] = React.useState('')
 
   const handleSubmit = async () => {
     const { error } = await signUp.password({
@@ -19,6 +23,7 @@ export default function Page() {
     })
     if (error) {
       console.error(JSON.stringify(error, null, 2))
+      setError(error.message)
       return
     }
 
