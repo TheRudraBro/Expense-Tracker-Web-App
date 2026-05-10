@@ -186,11 +186,90 @@ export default function Page() {
   )
 }
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//     gap: 12,
+//   },
+//   illustration: {
+//   width: '100%',
+//   height: 250,
+//   resizeMode: 'contain',
+//   alignSelf: 'center',
+//   marginTop: 20,
+//   marginBottom: 10,
+// },
+
+//   title: {
+//     marginBottom: 8,
+//   },
+//   label: {
+//     fontWeight: '600',
+//     fontSize: 14,
+//   },
+//   input: {
+//     borderWidth: 1,
+//     borderColor: COLORS.border,
+//     borderRadius: 8,
+//     padding: 12,
+//     fontSize: 16,
+//     backgroundColor: COLORS.white,
+//   },
+//   button: {
+//     backgroundColor: COLORS.primary,
+//     paddingVertical: 12,
+//     paddingHorizontal: 24,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginTop: 8,
+//   },
+//   buttonPressed: {
+//     opacity: 0.7,
+//   },
+//   buttonDisabled: {
+//     opacity: 0.5,
+//   },
+//   buttonText: {
+//     color: COLORS.white,
+//     fontWeight: '600',
+//   },
+//   secondaryButton: {
+//     paddingVertical: 12,
+//     paddingHorizontal: 24,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginTop: 8,
+//   },
+//   secondaryButtonText: {
+//     color: COLORS.primary,
+//     fontWeight: '600',
+//   },
+//   linkContainer: {
+//     flexDirection: 'row',
+//     gap: 4,
+//     marginTop: 12,
+//     alignItems: 'center',
+//   },
+//   error: {
+//     color: COLORS.expense,
+//     fontSize: 12,
+//     marginTop: -8,
+//   },
+//   debug: {
+//     fontSize: 10,
+//     opacity: 0.5,
+//     marginTop: 8,
+//     color: COLORS.textLight,
+//   },
+// })
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding:20,
     gap: 12,
+    backgroundColor: COLORS.background,
+    
   },
   illustration: {
   width: '100%',
@@ -203,11 +282,17 @@ const styles = StyleSheet.create({
 
   title: {
     marginBottom: 8,
+    color: COLORS.text,
+    fontSize: 28,
+    fontWeight: '700',
   },
+
   label: {
     fontWeight: '600',
     fontSize: 14,
+    color: COLORS.text,
   },
+
   input: {
     borderWidth: 1,
     borderColor: COLORS.border,
@@ -215,7 +300,9 @@ const styles = StyleSheet.create({
     padding: 12,
     fontSize: 16,
     backgroundColor: COLORS.white,
+    color: COLORS.text,
   },
+
   button: {
     backgroundColor: COLORS.primary,
     paddingVertical: 12,
@@ -224,16 +311,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
+
   buttonPressed: {
     opacity: 0.7,
   },
+
   buttonDisabled: {
     opacity: 0.5,
   },
+
   buttonText: {
     color: COLORS.white,
     fontWeight: '600',
   },
+
   secondaryButton: {
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -241,21 +332,25 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
+
   secondaryButtonText: {
     color: COLORS.primary,
     fontWeight: '600',
   },
+
   linkContainer: {
     flexDirection: 'row',
     gap: 4,
     marginTop: 12,
     alignItems: 'center',
   },
+
   error: {
     color: COLORS.expense,
     fontSize: 12,
     marginTop: -8,
   },
+
   debug: {
     fontSize: 10,
     opacity: 0.5,
