@@ -13,4 +13,5 @@ export default function AuthRoutesLayout() {
   }
 
   return <Stack />
+  //  return <Stack screenOptions={{headerShown:false}}/>
 }

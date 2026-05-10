@@ -1,7 +1,9 @@
 import { useSignIn } from '@clerk/expo'
 import { Link, useRouter } from 'expo-router'
 import React from 'react'
+import { COLORS } from '../../constants/colors'
 import { Pressable, StyleSheet, TextInput, View, Text } from 'react-native'
+import { Image } from 'react-native'
 
 export default function Page() {
   const { signIn, errors, fetchStatus } = useSignIn()
@@ -94,7 +96,7 @@ export default function Page() {
           style={styles.input}
           value={code}
           placeholder="Enter your verification code"
-          placeholderTextColor="#666666"
+          placeholderTextColor={COLORS.textLight}
           onChangeText={(code) => setCode(code)}
           keyboardType="numeric"
         />
@@ -130,6 +132,7 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
+      <Image source={require('../../assets/images/revenue-i1.png')} style={styles.illustration} />
       <Text type="title" style={styles.title}>
         Sign in
       </Text>
@@ -140,7 +143,7 @@ export default function Page() {
         autoCapitalize="none"
         value={emailAddress}
         placeholder="Enter email"
-        placeholderTextColor="#666666"
+        placeholderTextColor={COLORS.textLight}
         onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
         keyboardType="email-address"
       />
@@ -152,7 +155,7 @@ export default function Page() {
         style={styles.input}
         value={password}
         placeholder="Enter password"
-        placeholderTextColor="#666666"
+        placeholderTextColor={COLORS.textLight}
         secureTextEntry={true}
         onChangeText={(password) => setPassword(password)}
       />
@@ -171,7 +174,7 @@ export default function Page() {
         <Text style={styles.buttonText}>Continue</Text>
       </Pressable>
       {/* For your debugging purposes. You can just console.log errors, but we put them in the UI for convenience */}
-      {errors && <Text style={styles.debug}>{JSON.stringify(errors, null, 2)}</Text>}
+      {/* {errors && <Text style={styles.debug}>{JSON.stringify(errors, null, 2)}</Text>} */}
 
       <View style={styles.linkContainer}>
         <Text>Dont have an account? </Text>
@@ -189,6 +192,15 @@ const styles = StyleSheet.create({
     padding: 20,
     gap: 12,
   },
+  illustration: {
+  width: '100%',
+  height: 250,
+  resizeMode: 'contain',
+  alignSelf: 'center',
+  marginTop: 20,
+  marginBottom: 10,
+},
+
   title: {
     marginBottom: 8,
   },
@@ -198,14 +210,14 @@ const styles = StyleSheet.create({
   },
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS.border,
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
   },
   button: {
-    backgroundColor: '#0a7ea4',
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
@@ -219,7 +231,7 @@ const styles = StyleSheet.create({
     opacity: 0.5,
   },
   buttonText: {
-    color: '#fff',
+    color: COLORS.white,
     fontWeight: '600',
   },
   secondaryButton: {
@@ -230,7 +242,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
   secondaryButtonText: {
-    color: '#0a7ea4',
+    color: COLORS.primary,
     fontWeight: '600',
   },
   linkContainer: {
@@ -240,7 +252,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   error: {
-    color: '#d32f2f',
+    color: COLORS.expense,
     fontSize: 12,
     marginTop: -8,
   },
@@ -248,5 +260,6 @@ const styles = StyleSheet.create({
     fontSize: 10,
     opacity: 0.5,
     marginTop: 8,
+    color: COLORS.textLight,
   },
 })

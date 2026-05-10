@@ -4,6 +4,8 @@ import { Link, useRouter } from 'expo-router'
 // import React from 'react'
 import { Pressable, StyleSheet, TextInput, View, Text, TouchableOpacity } from 'react-native'
 import { COLORS } from '../../constants/colors'
+import { Image } from 'expo-image'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 // import { COLORS } from '../../constants/colors'
 
@@ -70,8 +72,15 @@ export default function Page() {
     signUp.missingFields.length === 0
   ) {
     return (
-      <View style={styles.container}>
-        <Text type="title" style={styles.title}>
+  <KeyboardAwareScrollView
+  style={{ flex: 1 }}
+  contentContainerStyle={styles.container}
+  keyboardShouldPersistTaps="handled"
+  showsVerticalScrollIndicator={false}
+  enableOnAndroid={true}
+  extraScrollHeight={20}
+>
+      <Text style={styles.title}>
           Verify your account
         </Text>
         <TextInput
@@ -102,13 +111,21 @@ export default function Page() {
         >
           <Text style={styles.secondaryButtonText}>I need a new code</Text>
         </Pressable>
-      </View>
+      </KeyboardAwareScrollView>
     )
   }
 
   return (
-    <View style={styles.container}>
-      <Text type="title" style={styles.title}>
+<KeyboardAwareScrollView
+  style={{ flex: 1 }}
+  contentContainerStyle={styles.container}
+  keyboardShouldPersistTaps="handled"
+  showsVerticalScrollIndicator={false}
+  enableOnAndroid={true}
+  extraScrollHeight={20}
+>
+    <Image source={require('../../assets/images/revenue-i2.png')} style={styles.illustration} />
+      <Text style={styles.title}>
         Sign up
       </Text>
 
@@ -164,7 +181,7 @@ export default function Page() {
 
       {/* Required for sign-up flows. Clerk's bot sign-up protection is enabled by default */}
       <View nativeID="clerk-captcha" />
-    </View>
+    </KeyboardAwareScrollView>
   )
 }
 
@@ -243,10 +260,19 @@ export default function Page() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding:20,
     gap: 12,
     backgroundColor: COLORS.background,
+    
   },
+  illustration: {
+  width: '100%',
+  height: 250,
+  resizeMode: 'contain',
+  alignSelf: 'center',
+  marginTop: 20,
+  marginBottom: 10,
+},
 
   title: {
     marginBottom: 8,
