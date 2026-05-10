@@ -3,6 +3,7 @@ import { useAuth, useSignUp } from '@clerk/expo'
 import { Link, useRouter } from 'expo-router'
 // import React from 'react'
 import { Pressable, StyleSheet, TextInput, View, Text, TouchableOpacity } from 'react-native'
+import { COLORS } from '../../constants/colors'
 
 // import { COLORS } from '../../constants/colors'
 
@@ -117,7 +118,7 @@ export default function Page() {
         autoCapitalize="none"
         value={emailAddress}
         placeholder="Enter email"
-        placeholderTextColor="#666666"
+        placeholderTextColor={COLORS.textLight}
         onChangeText={(emailAddress) => setEmailAddress(emailAddress)}
         keyboardType="email-address"
       />
@@ -148,12 +149,16 @@ export default function Page() {
         <Text style={styles.buttonText}>Sign up</Text>
       </Pressable>
       {/* For your debugging purposes. You can just console.log errors, but we put them in the UI for convenience */}
-      {errors && <Text style={styles.debug}>{JSON.stringify(errors, null, 2)}</Text>}
+      {/* {errors && <Text style={styles.debug}>{JSON.stringify(errors, null, 2)}</Text>} */}
 
       <View style={styles.linkContainer}>
-        <Text>Already have an account? </Text>
+        <Text style={{ color: COLORS.text }}>
+  Already have an account?
+</Text>
         <Link href="/sign-in">
-          <Text type="link">Sign in</Text>
+         <Text style={{ color: COLORS.primary, fontWeight: '600' }}>
+  Sign in
+</Text>
         </Link>
       </View>
 
@@ -163,45 +168,131 @@ export default function Page() {
   )
 }
 
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 20,
+//     gap: 12,
+//   },
+//   title: {
+//     marginBottom: 8,
+//   },
+//   label: {
+//     fontWeight: '600',
+//     fontSize: 14,
+//   },
+//   input: {
+//     borderWidth: 1,
+//     // borderColor: '#ccc',
+//     borderColor: COLORS.border,
+//     borderRadius: 8,
+//     padding: 12,
+//     fontSize: 16,
+//     // backgroundColor: '#fff',
+//     backgroundColor: COLORS.white,
+//   },
+//   button: {
+//     // backgroundColor: '#0a7ea4',
+//     backgroundColor: COLORS.primary,
+//     paddingVertical: 12,
+//     paddingHorizontal: 24,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginTop: 8,
+//   },
+//   buttonPressed: {
+//     opacity: 0.7,
+//   },
+//   buttonDisabled: {
+//     opacity: 0.5,
+//   },
+//   buttonText: {
+//     // color: '#fff',
+//     color: COLORS.white,
+//     fontWeight: '600',
+//   },
+//   secondaryButton: {
+//     paddingVertical: 12,
+//     paddingHorizontal: 24,
+//     borderRadius: 8,
+//     alignItems: 'center',
+//     marginTop: 8,
+//   },
+//   secondaryButtonText: {
+//     color: '#0a7ea4',
+//     fontWeight: '600',
+//   },
+//   linkContainer: {
+//     flexDirection: 'row',
+//     gap: 4,
+//     marginTop: 12,
+//     alignItems: 'center',
+//   },
+//   error: {
+//     // color: '#d32f2f',
+//     color: COLORS.expense,
+//     fontSize: 12,
+//     marginTop: -8,
+//   },
+//   debug: {
+//     fontSize: 10,
+//     opacity: 0.5,
+//     marginTop: 8,
+//   },
+// })
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
     gap: 12,
+    backgroundColor: COLORS.background,
   },
+
   title: {
     marginBottom: 8,
+    color: COLORS.text,
+    fontSize: 28,
+    fontWeight: '700',
   },
+
   label: {
     fontWeight: '600',
     fontSize: 14,
+    color: COLORS.text,
   },
+
   input: {
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: COLORS.border,
     borderRadius: 8,
     padding: 12,
     fontSize: 16,
-    backgroundColor: '#fff',
+    backgroundColor: COLORS.white,
+    color: COLORS.text,
   },
+
   button: {
-    backgroundColor: '#0a7ea4',
+    backgroundColor: COLORS.primary,
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
     alignItems: 'center',
     marginTop: 8,
   },
+
   buttonPressed: {
     opacity: 0.7,
   },
+
   buttonDisabled: {
     opacity: 0.5,
   },
+
   buttonText: {
-    color: '#fff',
+    color: COLORS.white,
     fontWeight: '600',
   },
+
   secondaryButton: {
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -209,24 +300,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginTop: 8,
   },
+
   secondaryButtonText: {
-    color: '#0a7ea4',
+    color: COLORS.primary,
     fontWeight: '600',
   },
+
   linkContainer: {
     flexDirection: 'row',
     gap: 4,
     marginTop: 12,
     alignItems: 'center',
   },
+
   error: {
-    color: '#d32f2f',
+    color: COLORS.expense,
     fontSize: 12,
     marginTop: -8,
   },
+
   debug: {
     fontSize: 10,
     opacity: 0.5,
     marginTop: 8,
+    color: COLORS.textLight,
   },
 })
