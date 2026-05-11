@@ -4,6 +4,7 @@ import React from 'react'
 import { COLORS } from '../../constants/colors'
 import { Pressable, StyleSheet, TextInput, View, Text } from 'react-native'
 import { Image } from 'react-native'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 
 export default function Page() {
   const { signIn, errors, fetchStatus } = useSignIn()
@@ -131,11 +132,20 @@ export default function Page() {
   }
 
   return (
+   <KeyboardAwareScrollView
+   style={{ flex: 1 }}
+   contentContainerStyle={{flexGrow:1, justifyContent:'center', padding:20}}
+   enableAutomaticScroll={true}
+  //  keyboardShouldPersistTaps="handled"
+  //  showsVerticalScrollIndicator={false}
+   enableOnAndroid={true}
+   extraScrollHeight={40}
+ >
+
+    
     <View style={styles.container}>
       <Image source={require('../../assets/images/revenue-i1.png')} style={styles.illustration} />
-      <Text type="title" style={styles.title}>
-        Sign in
-      </Text>
+      <Text style={styles.title}>Welcome Back</Text>
 
       <Text style={styles.label}>Email address</Text>
       <TextInput
@@ -183,6 +193,7 @@ export default function Page() {
         </Link>
       </View>
     </View>
+    </KeyboardAwareScrollView>
   )
 }
 

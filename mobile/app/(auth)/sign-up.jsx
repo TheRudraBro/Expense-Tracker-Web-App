@@ -72,14 +72,7 @@ export default function Page() {
     signUp.missingFields.length === 0
   ) {
     return (
-  <KeyboardAwareScrollView
-  style={{ flex: 1 }}
-  contentContainerStyle={styles.container}
-  keyboardShouldPersistTaps="handled"
-  showsVerticalScrollIndicator={false}
-  enableOnAndroid={true}
-  extraScrollHeight={20}
->
+     <View style={styles.container}>
       <Text style={styles.title}>
           Verify your account
         </Text>
@@ -111,23 +104,25 @@ export default function Page() {
         >
           <Text style={styles.secondaryButtonText}>I need a new code</Text>
         </Pressable>
-      </KeyboardAwareScrollView>
+        
+      </View>
     )
   }
 
   return (
-<KeyboardAwareScrollView
-  style={{ flex: 1 }}
-  contentContainerStyle={styles.container}
-  keyboardShouldPersistTaps="handled"
-  showsVerticalScrollIndicator={false}
-  enableOnAndroid={true}
-  extraScrollHeight={20}
->
+ <KeyboardAwareScrollView
+   style={{ flex: 1 }}
+   contentContainerStyle={{flexGrow:1, justifyContent:'center', padding:20}}
+   enableAutomaticScroll={true}
+  //  keyboardShouldPersistTaps="handled"
+  //  showsVerticalScrollIndicator={false}
+   enableOnAndroid={true}
+   extraScrollHeight={40}
+ >
     <Image source={require('../../assets/images/revenue-i2.png')} style={styles.illustration} />
-      <Text style={styles.title}>
-        Sign up
-      </Text>
+       <Text type="title" style={styles.title}>
+              Sign Up
+            </Text>
 
       <Text style={styles.label}>Email address</Text>
       <TextInput
