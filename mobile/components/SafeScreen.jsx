@@ -13,4 +13,4 @@ const SafeScreen = ({ children }) => {
   }
 
 
-export default SafeScreen
+export default SafeScreen;

@@ -16,6 +16,7 @@
 
 import { Stack } from "expo-router";
 import { ClerkProvider } from "@clerk/expo";
+import  SafeScreen  from "@/components/SafeScreen";
 
 const publishableKey =
   process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -23,7 +24,10 @@ const publishableKey =
 export default function RootLayout() {
   return (
     <ClerkProvider publishableKey={publishableKey}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <SafeScreen>
+          <Stack screenOptions={{ headerShown: false }} />
+      </SafeScreen>
+    
     </ClerkProvider>
   );
   
