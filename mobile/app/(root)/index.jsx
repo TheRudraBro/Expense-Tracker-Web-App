@@ -9,6 +9,7 @@ import { Image } from 'react-native'
 import { COLORS } from '../../constants/colors'
 import { styles } from '../../assets/styles/home.styles'
 import { Ionicons } from '@expo/vector-icons'
+import { SignOutButton } from '../../components/SignOutButton'
 
 export default function Page() {
   const { user } = useUser()
@@ -73,13 +74,7 @@ Welcome,
   Add
 </Text>
 </TouchableOpacity>
- {/* LOGOUT BUTTON */}
-  <TouchableOpacity
-    style={styles.logoutButton}
-    onPress={() => signOut()}
-  >
-    <Ionicons name="log-out-outline" size={22} color={COLORS.text} />
-  </TouchableOpacity>
+<SignOutButton />
 
 </View>
 
