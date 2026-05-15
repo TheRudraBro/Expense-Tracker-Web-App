@@ -1,9 +1,9 @@
 import { Show, useUser } from '@clerk/expo'
 import { useClerk } from '@clerk/expo'
 import { Link, useRouter } from 'expo-router'
-import { Alert, FlatList ,Text, View, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
+import { Alert, FlatList ,Text, View, Pressable, StyleSheet, TouchableOpacity, RefreshControl } from 'react-native'
 import { useTransactions } from '../../hooks/useTransactions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import PageLoader from '../../components/PageLoader'
 import { Image } from 'react-native'
 import { COLORS } from '../../constants/colors'
@@ -12,10 +12,12 @@ import { Ionicons } from '@expo/vector-icons'
 import { SignOutButton } from '../../components/SignOutButton'
 import { BalanceCard } from '../../components/BalanceCard'
 import { TransactionItem } from '../../components/TransactionItem'
+import NoTransactionsFound from '../../components/NoTransactionsFound'
 
 export default function Page() {
   const { user } = useUser()
   const router = useRouter()
+  const [refreshing, setRefreshing] = useState(false);
   const { signOut } = useClerk()
   const {
   transactions,
@@ -25,18 +27,26 @@ export default function Page() {
   deleteTransaction,
   } = useTransactions(user?.id)
 
-  useEffect(
-    () => {
-      loadData()
-    }, [loadData]
-  )
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await loadData();
+    setRefreshing(false);
+  };
+
+  useEffect(() => {
+  if (user?.id) {
+    loadData()
+  }
+}, [user?.id])
+
+
   const handleDelete = (id) => {
     Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
       { text: "Cancel", style: "cancel" },
       { text: "Delete", style: "destructive", onPress: () => deleteTransaction(id) },
     ]);
   };
-if (isLoading) return <PageLoader />
+if (isLoading && !refreshing) return <PageLoader />
   return (
     <View style={styles.container}>
       <View style= {styles.content}>
@@ -91,11 +101,12 @@ Welcome,
 style={styles.transactionsList}
 contentContainerStyle={styles.transactionsListContent}
 data={transactions}
-renderItem={({item}) => (
-  <TransactionItem item={item} onDelete={handleDelete}
-  />
-)}
-/>
+ renderItem={({ item }) => <TransactionItem item={item} onDelete={handleDelete} />}
+        ListEmptyComponent={<NoTransactionsFound />}
+        showsVerticalScrollIndicator={false}
+        refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+      />
+      
     </View>
   )
 }

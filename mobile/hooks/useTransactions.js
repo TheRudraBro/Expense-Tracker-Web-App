@@ -2,7 +2,8 @@
 
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
-const API_URL = 'https://expense-tracker-api-7cex.onrender.com/api';
+import { API_URL } from "../constants/api";
+// const API_URL = 'https://expense-tracker-api-7cex.onrender.com/api';
 
 // const API_URL = "http://localhost:5001/api";
 
