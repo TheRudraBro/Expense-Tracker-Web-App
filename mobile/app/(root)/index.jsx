@@ -1,7 +1,7 @@
 import { Show, useUser } from '@clerk/expo'
 import { useClerk } from '@clerk/expo'
 import { Link, useRouter } from 'expo-router'
-import { Text, View, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
+import { Alert, FlatList ,Text, View, Pressable, StyleSheet, TouchableOpacity } from 'react-native'
 import { useTransactions } from '../../hooks/useTransactions'
 import { useEffect } from 'react'
 import PageLoader from '../../components/PageLoader'
@@ -10,35 +10,32 @@ import { COLORS } from '../../constants/colors'
 import { styles } from '../../assets/styles/home.styles'
 import { Ionicons } from '@expo/vector-icons'
 import { SignOutButton } from '../../components/SignOutButton'
+import { BalanceCard } from '../../components/BalanceCard'
+import { TransactionItem } from '../../components/TransactionItem'
 
 export default function Page() {
   const { user } = useUser()
   const router = useRouter()
-  // const { transactions, summary, isLoading, loadData, deleteTransaction } = useTransactions(user.id)
   const { signOut } = useClerk()
-const {
+  const {
   transactions,
   summary,
   isLoading,
   loadData,
   deleteTransaction,
-} = useTransactions(user?.id)
+  } = useTransactions(user?.id)
 
   useEffect(
     () => {
       loadData()
     }, [loadData]
   )
-
-
-
-
-
-
-// console.log('userId', user?.id);
-//   console.log("transactions:", transactions)
-//    console.log("summary:", summary)
-
+  const handleDelete = (id) => {
+    Alert.alert("Delete Transaction", "Are you sure you want to delete this transaction?", [
+      { text: "Cancel", style: "cancel" },
+      { text: "Delete", style: "destructive", onPress: () => deleteTransaction(id) },
+    ]);
+  };
 if (isLoading) return <PageLoader />
   return (
     <View style={styles.container}>
@@ -83,32 +80,22 @@ Welcome,
 {/* Header close */}
 
 </View>
+
+{/* Balance Card */}
+<BalanceCard summary={summary} />
+<View style={styles.transactionsHeaderContainer}>
+  <Text style={styles.sectionTitle}>Recent Transactions</Text>
+</View>
       </View>
+<FlatList
+style={styles.transactionsList}
+contentContainerStyle={styles.transactionsListContent}
+data={transactions}
+renderItem={({item}) => (
+  <TransactionItem item={item} onDelete={handleDelete}
+  />
+)}
+/>
     </View>
   )
 }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     padding: 20,
-//     paddingTop: 60,
-//     gap: 16,
-//   },
-//   title: {
-//     fontSize: 24,
-//     fontWeight: 'bold',
-//   },
-//   button: {
-//     backgroundColor: '#3da40a',
-//     paddingVertical: 12,
-//     paddingHorizontal: 24,
-//     borderRadius: 8,
-//     alignItems: 'center',
-//   },
-//   buttonText: {
-//     color: '#fff',
-//     fontWeight: '600',
-//   },
-//   welcomeText: {
-// }) 
