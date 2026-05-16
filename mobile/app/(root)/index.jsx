@@ -11,7 +11,7 @@ import { styles } from '../../assets/styles/home.styles'
 import { Ionicons } from '@expo/vector-icons'
 import { SignOutButton } from '../../components/SignOutButton'
 import { BalanceCard } from '../../components/BalanceCard'
-import { TransactionItem } from '../../components/TransactionItem'
+import { TransactionItem } from '../../components/TransactionItem'      
 import NoTransactionsFound from '../../components/NoTransactionsFound'
 
 export default function Page() {
